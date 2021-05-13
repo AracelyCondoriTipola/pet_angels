@@ -1,0 +1,26 @@
+###
+
+GET http://localhost:8080/clinic/1
+
+###
+
+
+GET http://localhost:8080/clinic
+Accept: application/json
+
+###
+
+POST http://localhost:8080/clinic
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id_clinic": 3,
+  "id_geolocation": 1,
+  "name_clinic": "Pet ",
+  "email": "pet@gmail",
+  "phone_number": "+591 7012331",
+  "city": "La Paz",
+  "address": "El Alto"
+}
+

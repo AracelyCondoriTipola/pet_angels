@@ -1,0 +1,22 @@
+###
+
+GET http://localhost:8080/person/4
+
+###
+GET http://localhost:8080/person
+
+###
+POST http://localhost:8080/person
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id_person": 18,
+  "first_name": "Maya",
+  "last_name": "Perez",
+  "email": "maya@gamil",
+  "date_of_birth": "2020-05-12",
+  "phone_number": "70834566",
+  "address": "14 de septiembre",
+  "city": "La Paz"
+}
