@@ -14,7 +14,7 @@ Accept: application/json
   "id_pet": 3,
   "id_pet_type": 2,
   "id_races": 5,
-  "first_name": "Maya",
+  "first_name": "Ara",
   "last_name": "Perez",
   "email": "maya@gamil",
   "user_o": "mayaPerez",
