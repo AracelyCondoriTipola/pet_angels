@@ -1,0 +1,17 @@
+GET http://localhost:8080/payment/1
+
+###
+
+GET http://localhost:8080/payment
+
+###
+
+POST http://localhost:8080/payment
+Content-Type: application/json
+Accept: application/json
+
+{
+  "payment_name": "Jhon",
+  "cost": 1225.00
+}
+###

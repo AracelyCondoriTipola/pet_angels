@@ -1,8 +1,13 @@
 ###
 
-GET http://localhost:8080/person/4
+GET http://localhost:8080/person/1
 
 ###
+
+GET http://localhost:8080/person/Mamani
+
+###
+
 GET http://localhost:8080/person
 
 ###
@@ -11,8 +16,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "id_person": 18,
-  "first_name": "Maya",
+  "id_geolocation": 2,
+  "first_name": "Jhon",
   "last_name": "Perez",
   "email": "maya@gamil",
   "date_of_birth": "2020-05-12",
@@ -20,3 +25,5 @@ Accept: application/json
   "address": "14 de septiembre",
   "city": "La Paz"
 }
+
+

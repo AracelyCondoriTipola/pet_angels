@@ -1,0 +1,18 @@
+###
+
+GET http://localhost:8080/pet/10
+
+###
+GET http://localhost:8080/pet
+
+###
+POST http://localhost:8080/pet
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Osita",
+  "sex": "Hembra",
+  "date_of_birthp": "2020-05-12"
+
+}

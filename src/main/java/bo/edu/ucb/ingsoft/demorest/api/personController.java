@@ -1,98 +1,59 @@
 package bo.edu.ucb.ingsoft.demorest.api;
 
-import bo.edu.ucb.ingsoft.demorest.dto.person;
+import bo.edu.ucb.ingsoft.demorest.bl.PersonBl;
+import bo.edu.ucb.ingsoft.demorest.dto.PersonDto;
+import bo.edu.ucb.ingsoft.demorest.dto.ResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
-public class personController {
+public class PersonController {
     @Autowired
     public DataSource dataSource;
-    @GetMapping(path = "/person/{id_person}")
-    public person findPersonById(@PathVariable Integer id_person) {
-        person result = new person();
-        try {
-            Connection conn = dataSource.getConnection();
-            Statement stnt = conn.createStatement();
-            ResultSet rs = stnt.executeQuery("select id_person, first_name, last_name, email, date_of_birth, " +
-                    "phone_number,address,city  from person " +
-                    "where id_person = + id_person");
-            if (rs.next()) {
-                result.first_name = rs.getString("first_name");
-                result.last_name = rs.getString("last_name");
-                result.email = rs.getString("email");
-                result.date_of_birth = rs.getDate("date_of_brith");
-                result.phone_number = rs.getString("phone_number");
-                result.address = rs.getString("address");
-                result.city = rs.getString("city");
+    @Autowired
+    private PersonBl personaBl;
 
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
+    @GetMapping(path = "/person/{id_persona}")
+    public ResponseDto findPersonById(@PathVariable Integer id_persona) {
+        PersonDto person = personaBl.findPersonById(id_persona);
+        if (person != null) {
+            return new ResponseDto( true, person, null);
+        } else {
+            return new ResponseDto( false, null, "No existe la persona con codigo:");
         }
-        return result;
+    }
+/*
+    @GetMapping(path = "/person/{last_name}")
+    public ResponseDto findByLastName(@PathVariable String last_name) {
+        PersonDto person = personaBl.findByLastName(last_name);
+        if (person != null) {
+            return new ResponseDto( true, person, null);
+        } else {
+            return new ResponseDto( false, null, "No existe la persona con codigo:");
+        }
+    }
+*/
+    @GetMapping(path = "/person")
+    public ResponseDto findAllPerson() {
+        return new ResponseDto( true, personaBl.findAllPerson(), null);
     }
 
-    @GetMapping (path = "/person")   // agregar
-    public List<person> findAllPerson() {  //listar personas
-        List<person>result = new ArrayList<>();
-
-        try {
-            Connection conn = dataSource.getConnection();
-            Statement stnt = conn.createStatement();
-            ResultSet rs = stnt.executeQuery("select id_person, first_name, last_name, email, date_of_birth, " +
-                    "phone_number,address,city  from person " +
-                    "where id_person = + id_person");
-
-            //
-            while (rs.next()) {
-                person person = new person();
-                result.add(person);
- //               result.first_name = rs.getString("first_name");
- //               result.last_name = rs.getString("last_name");
- //               result.email = rs.getString("email");
- //               result.date_of_birth = rs.getDate("date_of_brith");
- //               result.phone_number = rs.getString("phone_number");
- //               result.address = rs.getString("address");
- //               result.city = rs.getString("city");
- //               result.add(person);
-
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return result;
-    }
     @PostMapping(path = "/person")
-    public person createPerson(@RequestBody person person) {
-        //validar los datos correctos.
-
-
-        try {
-            Connection conn = dataSource.getConnection();
-            Statement stnt = conn.createStatement();
-            stnt.executeQuery ("INSERT INTO person VALUE ("
-                    + person.id_person+", '"
-                    + person.first_name+"', '"
-                    + person.last_name+"', '"
-                    + person.email+"', '"
-                    + person.date_of_birth+"', '"
-                    + person.phone_number+"', '"
-                    + person.address+"', '"
-                    + person.city+"')");
-        } catch (Exception ex) {
-            ex.printStackTrace();
+    public ResponseDto crearPerson(@RequestBody PersonDto persona) {
+        // Validar que los datos enviados son correctos.
+        if (persona.getFirst_name() == null || persona.getFirst_name().trim().equals("")) {  // nombre: "     "
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El nombre debe ser obligatorio" );
+            return new ResponseDto( false, null, "El nombre debe ser obligatorio");
         }
-        return person;
 
+        if (persona.getLast_name() == null || persona.getFirst_name().trim().equals("")) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El apellido debe ser obligatorio" );
+            return new ResponseDto( false, null, "El apellido debe ser obligatorio");
+        }
+
+        return new ResponseDto(true, personaBl.crearPerson(persona), null);
     }
 
 }
