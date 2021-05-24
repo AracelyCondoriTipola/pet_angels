@@ -22,6 +22,7 @@ public class RegistroUDto {
     private Date date_of_birthp;
     private String type_pet;
     private String namer;
+    private Integer status;
 
     public RegistroUDto(){
     }
@@ -177,5 +178,15 @@ public class RegistroUDto {
     public void setNamer(String namer) {
         this.namer = namer;
     }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+
 }
 

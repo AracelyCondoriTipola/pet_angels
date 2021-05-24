@@ -1,4 +1,4 @@
-GET http://localhost:8080/registro/1
+GET http://localhost:8080/registro/2
 
 ###
 
@@ -10,6 +10,10 @@ Content-Type: application/json
 Accept: application/json
 
 {
+  "id_person": 1,
+  "id_pet": 3,
+  "id_pet_type": 2,
+  "id_races": 5,
   "first_name": "Maya",
   "last_name": "Perez",
   "email": "maya@gamil",
@@ -19,11 +23,12 @@ Accept: application/json
   "phone_number": "70834566",
   "address": "14 de septiembre",
   "city": "La Paz",
-  "name": "Osita",
+  "namep": "Osita",
   "sex": "Hembra",
-  "date_of_birth": "2020-05-12",
+  "date_of_birthp": "2020-05-12",
   "type_pet": "Perro",
-  "namer": "Cuquer"
+  "namer": "Cuquer",
+  "status": 1
 }
 ###
 
