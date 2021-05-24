@@ -23,15 +23,17 @@ public class PersonDao {
         Connection conn = null;
         try {
             conn = dataSource.getConnection();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO person VALUES (?,?,?,?,?,?,?,?) ");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO person VALUES (?,?,?,?,?,?,?,?,?,?) ");
             stmt.setInt(1, personDto.getId_person());
-            stmt.setString(2, personDto.getFirst_name());
-            stmt.setString(3, personDto.getLast_name());
-            stmt.setString(4, personDto.getEmail());
-            stmt.setString(5, String.valueOf(personDto.getDate_of_birth()));
-            stmt.setString(6, personDto.getPhone_number());
-            stmt.setString(7, personDto.getAddress());
-            stmt.setString(8, personDto.getCity());
+            stmt.setInt(2, personDto.getId_geolocation());
+            stmt.setString(3, personDto.getFirst_name());
+            stmt.setString(4, personDto.getLast_name());
+            stmt.setString(5, personDto.getEmail());
+            stmt.setString(6, String.valueOf(personDto.getDate_of_birth()));
+            stmt.setString(7, personDto.getPhone_number());
+            stmt.setString(8, personDto.getAddress());
+            stmt.setString(9, personDto.getCity());
+            stmt.setInt(10, personDto.getStatus());
 
 
         } catch (Exception ex) {
@@ -53,7 +55,7 @@ public class PersonDao {
         PersonDto result = new PersonDto();
 
         try (Connection conn = dataSource.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT id_person,id_geolocation,first_name,last_name,email,date_of_birth, phone_number,address, city FROM person " +
+            PreparedStatement pstmt = conn.prepareStatement("SELECT id_person,id_geolocation,first_name,last_name,email,date_of_birth, phone_number,address, city, status FROM person " +
                     "where id_person = ?")
         ){ //TRY WITH RESOURCES
             pstmt.setInt(1, id_person);
@@ -68,6 +70,7 @@ public class PersonDao {
                 result.setPhone_number(rs.getString("phone_number"));
                 result.setAddress(rs.getString("address"));
                 result.setCity(rs.getString("city"));
+                result.setStatus(rs.getInt("status"));
             } else { // si no hay valores de BBDD
                 result = null;
             }
@@ -84,7 +87,7 @@ public class PersonDao {
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement()) {
 
-            ResultSet rs = stmt.executeQuery("SELECT id_person,id_geolocation,first_name,last_name,email,date_of_birth, phone_number,address, city FROM person;");
+            ResultSet rs = stmt.executeQuery("SELECT id_person,id_geolocation,first_name,last_name,email,date_of_birth, phone_number,address, city, status FROM person;");
             while (rs.next()) {
                 PersonDto person = new PersonDto();
                 person.setId_person(rs.getInt("id_person"));
@@ -96,6 +99,7 @@ public class PersonDao {
                 person.setPhone_number(rs.getString("phone_number"));
                 person.setAddress(rs.getString("address"));
                 person.setCity(rs.getString("city"));
+                person.setStatus(rs.getInt("status"));
 
                 result.add(person);
             }

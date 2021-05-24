@@ -103,6 +103,9 @@ public class RegistroUDao {
                 result.setPhone_number(rs.getString("phone_number"));
                 result.setAddress(rs.getString("address"));
                 result.setCity(rs.getString("city"));
+                result.setUser_o(rs.getString("user_o"));
+                result.setUser_o(rs.getString("password_o"));
+
             } else {
                 result = null;
             }

@@ -1,6 +1,6 @@
 ###
 
-GET http://localhost:8080/person/1
+GET http://localhost:8080/person/37
 
 ###
 
@@ -23,7 +23,8 @@ Accept: application/json
   "date_of_birth": "2020-05-12",
   "phone_number": "70834566",
   "address": "14 de septiembre",
-  "city": "La Paz"
+  "city": "La Paz",
+  "status": 1
 }
 
 

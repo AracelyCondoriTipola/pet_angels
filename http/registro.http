@@ -19,9 +19,9 @@ Accept: application/json
   "phone_number": "70834566",
   "address": "14 de septiembre",
   "city": "La Paz",
-  "namep": "Osita",
+  "name": "Osita",
   "sex": "Hembra",
-  "date_of_birthp": "2020-05-12",
+  "date_of_birth": "2020-05-12",
   "type_pet": "Perro",
   "namer": "Cuquer"
 }

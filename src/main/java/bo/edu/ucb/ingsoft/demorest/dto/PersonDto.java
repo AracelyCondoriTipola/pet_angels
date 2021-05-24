@@ -12,7 +12,7 @@ public class PersonDto {
     private String phone_number;
     private String address;
     private String city;
-    private String nroSS;
+    private Integer status;
 
     public PersonDto(){
 
@@ -89,14 +89,12 @@ public class PersonDto {
     public void setCity(String city) {
         this.city = city;
     }
-    public String getNroSS() {
-        return nroSS;
+
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setNroSS(String nroSS) {
-        this.nroSS = nroSS;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
-
-
-
 }

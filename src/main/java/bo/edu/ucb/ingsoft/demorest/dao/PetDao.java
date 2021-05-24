@@ -26,7 +26,7 @@ public class PetDao {
             stmt.setString(2, pet.getName());
             stmt.setString(3, pet.getSex());
             stmt.setString(4, String.valueOf(pet.getDate_of_birth()));
-            stmt.executeUpdate();
+
 
         }catch (Exception ex){
             ex.printStackTrace();
